@@ -1,0 +1,9 @@
+{
+  "name": "coding-plan-quota-watcher-apple",
+  "private": true,
+  "version": "1.10.0",
+  "description": "Quota Watcher for Apple platforms：iOS App + Safari Web Extension + watchOS（Xcode 多 target 工程）",
+  "scripts": {
+    "sync": "node scripts/sync-extension.mjs"
+  }
+}
