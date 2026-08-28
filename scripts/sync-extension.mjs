@@ -13,7 +13,9 @@ import {
   cpSync,
   existsSync,
   mkdirSync,
+  readFileSync,
   rmSync,
+  writeFileSync,
 } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -61,5 +63,22 @@ for (const name of TOP_DIRS) {
   cpSync(join(extRoot, name), join(resourcesDir, name), { recursive: true });
 }
 cpSync(join(extRoot, BUILD_DIR), join(resourcesDir, BUILD_DIR), { recursive: true });
+
+// ------------------------------------------------------------
+// Safari 特化 overlay：
+// iOS WebKit 不支持 tabs.create 导航 extension:// URL（地址栏手动输入
+// 则可以），因此 Chrome 端「点图标直接开 dashboard」的 onClicked 方案
+// 在 iOS 上只开一个空白起始页。iOS 的可行入口是 default_popup 中转：
+// popup 里 window.open(extension://...) 由扩展页面自身发起导航，允许。
+// 该特化只注入 Safari 版 manifest，Chrome 仓库源码保持 onClicked 行为。
+// ------------------------------------------------------------
+const overlayDir = join(root, "overlays");
+copyFileSync(join(overlayDir, "popup.html"), join(resourcesDir, "popup.html"));
+
+const manifestPath = join(resourcesDir, "manifest.json");
+const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+manifest.action = { ...(manifest.action || {}), default_popup: "popup.html" };
+writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
+console.log("✓ Safari overlay：action.default_popup = popup.html 已注入");
 
 console.log(`✓ 已同步扩展资源到 ${join("Quota Watcher Extension", "Resources")}`);

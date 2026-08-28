@@ -25,6 +25,7 @@
 		4F82BFB5303F3C0000A7BA3C /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F82BFAE303F3C0000A7BA3C /* manifest.json */; };
 		4F82BFB6303F3C0000A7BA3C /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 4F82BFAF303F3C0000A7BA3C /* _locales */; };
 		4F82BFB7303F3C0000A7BA3C /* settings.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F82BFB0303F3C0000A7BA3C /* settings.html */; };
+		AA11BB22CC33DD44EE55FF02 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC33DD44EE55FF01 /* popup.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		4F82BFAC303F3C0000A7BA3C /* common.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = common.css; path = Resources/common.css; sourceTree = "<group>"; };
 		4F82BFAD303F3C0000A7BA3C /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = Resources/icons; sourceTree = "<group>"; };
 		4F82BFAE303F3C0000A7BA3C /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = Resources/manifest.json; sourceTree = "<group>"; };
+		AA11BB22CC33DD44EE55FF01 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = popup.html; path = Resources/popup.html; sourceTree = "<group>"; };
 		4F82BFAF303F3C0000A7BA3C /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; name = _locales; path = Resources/_locales; sourceTree = "<group>"; };
 		4F82BFB0303F3C0000A7BA3C /* settings.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = settings.html; path = Resources/settings.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +158,7 @@
 				4F82BFAE303F3C0000A7BA3C /* manifest.json */,
 				4F82BFAF303F3C0000A7BA3C /* _locales */,
 				4F82BFB0303F3C0000A7BA3C /* settings.html */,
+				AA11BB22CC33DD44EE55FF01 /* popup.html */,
 			);
 			name = Resources;
 			path = "Quota Watcher Extension";
@@ -267,6 +270,7 @@
 				4F82BFB5303F3C0000A7BA3C /* manifest.json in Resources */,
 				4F82BFB3303F3C0000A7BA3C /* common.css in Resources */,
 				4F82BFB2303F3C0000A7BA3C /* dashboard.html in Resources */,
+				AA11BB22CC33DD44EE55FF02 /* popup.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

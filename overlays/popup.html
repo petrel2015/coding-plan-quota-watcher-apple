@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quota Watcher</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "PingFang SC", sans-serif;
+    background: rgba(245, 246, 248, 0.96);
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: rgba(28, 30, 34, 0.96); }
+  }
+  .wrap { padding: 14px 16px 16px; width: 240px; }
+  h1 { font-size: 15px; margin: 0 0 12px; font-weight: 600; }
+  button {
+    display: block; width: 100%;
+    padding: 11px 0; border: none; border-radius: 10px;
+    font-size: 15px; font-weight: 600;
+    background: #3b82f6; color: #fff;
+  }
+  button:active { opacity: 0.8; }
+  .hint { margin: 10px 0 0; font-size: 12px; opacity: 0.55; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Coding Plan 用量监控</h1>
+  <button id="open">打开 Dashboard</button>
+  <p class="hint">在独立标签页中打开用量面板</p>
+</div>
+<script>
+  document.getElementById("open").addEventListener("click", () => {
+    const url = chrome.runtime.getURL("dashboard.html");
+    // iOS WebKit 拦截 popup 环境的 window.open；tabs.create 是扩展 UI
+    // 上下文里打开新标签页的可靠方式（background SW 里调它开不了
+    // extension:// 页面，但从 popup 调用走的是另一条路径）
+    if (chrome.tabs && chrome.tabs.create) {
+      chrome.tabs.create({ url }).then(() => window.close());
+    } else {
+      window.open(url, "_blank");
+      setTimeout(() => window.close(), 150);
+    }
+  });
+</script>
+</body>
+</html>
