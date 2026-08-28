@@ -48,6 +48,7 @@ npm run sync    # 在扩展仓库执行 npm run build，并把产物同步到工
 
 ## 与 Chrome 版的差异
 
+- **扩展图标入口（popup 中转）**：iOS WebKit 不支持 background SW 里 `tabs.create` 导航 `extension://` URL（只开空白起始页）。因此 Safari 版 manifest 由 `npm run sync` 注入 `action.default_popup`，点扩展图标先弹 `popup.html`，再由 popup 内 `chrome.tabs.create` 打开 dashboard（`window.open` 会被 iOS 弹窗拦截器拦掉）。Chrome 仓库源码不受影响，桌面 Chrome 仍是点图标直接开 dashboard。
 - **background 打包形式**：Safari 不支持 manifest 的 `background.type: "module"`，扩展仓库把 background 构建为自包含 IIFE 单文件（无 import），Chrome 与 Safari 共用同一份产物。
 - **DNR resourceTypes**：Chromium 下用 `resourceTypes` 收窄 DNR 匹配；WebKit 对扩展自身请求的类别划分不同，非 Chromium 环境自动省略该条件。
 - **已知限制**：
